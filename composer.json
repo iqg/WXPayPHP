@@ -1,0 +1,11 @@
+{
+    "name": "iqg/wxpay-sdk-php",
+    "description": "wechat pay sdk for php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "guonan",
+            "email": "guonan@doweidu.com"
+        }
+    ],
+}
