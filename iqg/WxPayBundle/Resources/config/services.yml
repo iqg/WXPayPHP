@@ -1,0 +1,4 @@
+services:
+    wxpay.handler:
+        class: iqg\WxPayBundle\Lib\WxPayApi
+        arguments: [@service_container]

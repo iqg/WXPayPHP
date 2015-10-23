@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <style>
+        button{margin:20px; height: 40px;line-height: 40px; width: 200px;}
+    </style>
+</head>
+<body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+
+<button onclick="callpay()" type="button">支付</button>
+<script>
+//调用微信JS api 支付
+
+    function jsApiCall()
+    {
+        var params = {{ parameters | raw }}
+        alert(params)
+        WeixinJSBridge.invoke(
+                'getBrandWCPayRequest',
+                params,
+        function(res){
+            WeixinJSBridge.log(res.err_msg);
+            alert(res.err_code+res.err_desc+res.err_msg);
+        }
+        );
+    }
+
+    function callpay()
+    {
+        if (typeof WeixinJSBridge == "undefined"){
+            if( document.addEventListener ){
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            }else if (document.attachEvent){
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        }else{
+            jsApiCall();
+        }
+    }
+</script>
+</body>
+</html>
+
