@@ -716,8 +716,8 @@ class WxPayApi
         //取出openid
         $data = json_decode($res,true);
         $this->data = $data;
-        $openid = $data['openid'];
-        return $openid;
+        
+        return isset($data['openid']) ? $data['openid'] : null;
     }
 
     /**
@@ -782,17 +782,13 @@ class WxPayApi
      */
     private function __CreateOauthUrlForCode($redirectUrl)
     {
-//        $urlObj["appid"] = $this->appId;
-//        $urlObj["redirect_uri"] = "$redirectUrl";
-//        $urlObj["response_type"] = "code";
-//        $urlObj["scope"] = "snsapi_base";
-//        $urlObj["state"] = "STATE"."#wechat_redirect";
-//        $bizString = $this->ToUrlParams($urlObj);
-//        return "https://open.weixin.qq.com/connect/oauth2/authorize?".$bizString;
-
-
-//        var_dump($redirectUrl);exit;
-        return 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxaa8d6f34c8d0a56b&redirect_uri=http%3A%2F%2Fm.iqianggou.com%2Ftests%2Fwechat%2Fcode.html%3Fusertype%3Dsnsapi_userinfo%26bindtype%3Dsnsapi_base%26jumpurl%3Dhttp%253A%252F%252F27.115.51.166%253A8090%252Ftest&response_type=code&scope=snsapi_base&state=1445501534531#wechat_redirect';
+        $urlObj["appid"] = $this->appId;
+        $urlObj["redirect_uri"] = "$redirectUrl";
+        $urlObj["response_type"] = "code";
+        $urlObj["scope"] = "snsapi_base";
+        $urlObj["state"] = "STATE"."#wechat_redirect";
+        $bizString = $this->ToUrlParams($urlObj);
+        return "https://open.weixin.qq.com/connect/oauth2/authorize?".$bizString;
     }
 
     /**
