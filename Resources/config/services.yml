@@ -2,3 +2,6 @@ services:
     wxpay.handler:
         class: iqg\WxPayBundle\Lib\WxPayApi
         arguments: [@service_container]
+    wxpay_notify.handler:
+        class: iqg\WxPayBundle\Lib\WxPayNotify
+        arguments: [@service_container]

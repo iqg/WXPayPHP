@@ -716,7 +716,7 @@ class WxPayApi
         //取出openid
         $data = json_decode($res,true);
         $this->data = $data;
-        
+
         return isset($data['openid']) ? $data['openid'] : null;
     }
 
