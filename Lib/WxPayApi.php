@@ -36,12 +36,14 @@ class WxPayApi
     {
         $parameters = $container->getParameter('wxpay_config');
 
+        $rootPath = $container->get('kernel')->getRootDir();
+
         $this->appId            = isset($parameters['appid']) ? $parameters['appid'] : null;
         $this->mchId            = isset($parameters['mchid']) ? $parameters['mchid'] : null;
         $this->key              = isset($parameters['key']) ? $parameters['key'] : null;
         $this->appsecret        = isset($parameters['appsecret']) ? $parameters['appsecret'] : null;
-        $this->sslCertPath      = isset($parameters['ssl_cert_path']) ? $parameters['ssl_cert_path'] : null;
-        $this->sslKeyPath       = isset($parameters['ssl_key_path']) ? $parameters['ssl_key_path'] : null;
+        $this->sslCertPath      = $rootPath . (isset($parameters['ssl_cert_path']) ? $parameters['ssl_cert_path'] : null);
+        $this->sslKeyPath       = $rootPath . (isset($parameters['ssl_key_path']) ? $parameters['ssl_key_path'] : null);
         $this->curlProxyHost    = isset($parameters['curl_proxy_host']) ? $parameters['curl_proxy_host'] : null;
         $this->curlProxyPort    = isset($parameters['curl_proxy_port']) ? $parameters['curl_proxy_port'] : null;
         $this->reportLevel      = isset($parameters['report_level']) ? $parameters['report_level'] : null;
