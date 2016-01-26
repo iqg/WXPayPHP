@@ -32,21 +32,19 @@ class WxPayApi
 
     private $reportLevel;
 
-    public function __construct(Container $container)
+    public function __construct(Container $container, $wxpayConfig)
     {
-        $parameters = $container->getParameter('wxpay_config');
-
         $rootPath = $container->get('kernel')->getRootDir();
 
-        $this->appId            = isset($parameters['appid']) ? $parameters['appid'] : null;
-        $this->mchId            = isset($parameters['mchid']) ? $parameters['mchid'] : null;
-        $this->key              = isset($parameters['key']) ? $parameters['key'] : null;
-        $this->appsecret        = isset($parameters['appsecret']) ? $parameters['appsecret'] : null;
-        $this->sslCertPath      = $rootPath . (isset($parameters['ssl_cert_path']) ? $parameters['ssl_cert_path'] : null);
-        $this->sslKeyPath       = $rootPath . (isset($parameters['ssl_key_path']) ? $parameters['ssl_key_path'] : null);
-        $this->curlProxyHost    = isset($parameters['curl_proxy_host']) ? $parameters['curl_proxy_host'] : null;
-        $this->curlProxyPort    = isset($parameters['curl_proxy_port']) ? $parameters['curl_proxy_port'] : null;
-        $this->reportLevel      = isset($parameters['report_level']) ? $parameters['report_level'] : null;
+        $this->appId            = isset($wxpayConfig['appid']) ? $wxpayConfig['appid'] : null;
+        $this->mchId            = isset($wxpayConfig['mchid']) ? $wxpayConfig['mchid'] : null;
+        $this->key              = isset($wxpayConfig['key']) ? $wxpayConfig['key'] : null;
+        $this->appsecret        = isset($wxpayConfig['appsecret']) ? $wxpayConfig['appsecret'] : null;
+        $this->sslCertPath      = $rootPath . (isset($wxpayConfig['ssl_cert_path']) ? $wxpayConfig['ssl_cert_path'] : null);
+        $this->sslKeyPath       = $rootPath . (isset($wxpayConfig['ssl_key_path']) ? $wxpayConfig['ssl_key_path'] : null);
+        $this->curlProxyHost    = isset($wxpayConfig['curl_proxy_host']) ? $wxpayConfig['curl_proxy_host'] : null;
+        $this->curlProxyPort    = isset($wxpayConfig['curl_proxy_port']) ? $wxpayConfig['curl_proxy_port'] : null;
+        $this->reportLevel      = isset($wxpayConfig['report_level']) ? $wxpayConfig['report_level'] : null;
     }
 
 	/**
