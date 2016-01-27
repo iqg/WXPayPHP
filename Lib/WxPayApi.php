@@ -686,6 +686,29 @@ class WxPayApi
         return $parameters;
     }
 
+    public function GetAppPayParameters($UnifiedOrderResult)
+    {
+        if(!array_key_exists("appid", $UnifiedOrderResult)
+            || !array_key_exists("prepay_id", $UnifiedOrderResult)
+            || $UnifiedOrderResult['prepay_id'] == "")
+        {
+            throw new WxPayException("参数错误");
+        }
+
+        $appPay = new WxPayAppPay();
+        $appPay->SetAppid($UnifiedOrderResult["appid"]);
+        $timeStamp = time();
+        $appPay->SetTimeStamp("$timeStamp");
+        $appPay->SetNonceStr(WxPayApi::getNonceStr());
+        $appPay->SetPackage();
+        $appPay->SetPartnerId("$this->mchId");
+        $appPay->SetPrepayId($UnifiedOrderResult['prepay_id']);
+
+        $appPay->SetSign($appPay->MakeSign($this->key));
+
+        return $appPay->GetValues();
+    }
+
     /**
      *
      * 通过code从工作平台获取openid机器access_token
