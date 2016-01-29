@@ -14,11 +14,9 @@ class WxPayNotify extends WxPayNotifyReply
 {
     private  $key;
 
-    public function __construct(Container $container)
+    public function __construct(Container $container, $wxpayConfig)
     {
-        $parameters = $container->getParameter('wxpay_config');
-
-        $this->key              = isset($parameters['key']) ? $parameters['key'] : null;
+        $this->key              = isset($wxpayConfig['key']) ? $wxpayConfig['key'] : null;
     }
 
     /**
