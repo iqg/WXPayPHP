@@ -1,13 +1,13 @@
 services:
     wxpay.handler:
         class: iqg\WxPayBundle\Lib\WxPayApi
-        arguments: [@service_container, %wxpay_config%]
+        arguments: ['@service_container', %wxpay_config%]
     wxpay.public.handler:
         class: iqg\WxPayBundle\Lib\WxPayApi
-        arguments: [@service_container, %wxpay_public_config%]
+        arguments: ['@service_container', %wxpay_public_config%]
     wxpay_notify.handler:
         class: iqg\WxPayBundle\Lib\WxPayNotify
-        arguments: [@service_container, %wxpay_config%]
+        arguments: ['@service_container', %wxpay_config%]
     wxpay_notify.public.handler:
         class: iqg\WxPayBundle\Lib\WxPayNotify
-        arguments: [@service_container, %wxpay_public_config%]
+        arguments: ['@service_container', %wxpay_public_config%]
